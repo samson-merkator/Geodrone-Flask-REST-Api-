@@ -6,13 +6,19 @@ import datetime
 from security import authenticate, identity
 from resources.user import UserRegister # work on importing the user UserRegister from user.py first 
 from resources.item import Item, ItemList
+from db import db
+    
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db' # we can specify the type of database from sqlite to postgres and it should work out of the box
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # disable SQLALCHEMy sessions to make code run faster we use Flask SQL ALCHEMY tracker
 app.secret_key = 'thereisawoman'
 api = Api(app)
+db.init_app(app)
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
     
 jwt = JWT(app, authenticate, identity) # JWT creates a new end point, that is /auth
