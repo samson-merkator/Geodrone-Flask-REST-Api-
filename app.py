@@ -20,7 +20,7 @@ jwt = JWT(app, authenticate, identity) # JWT creates a new end point, that is /a
 app.config['JWT_EXPIRATION_DELTA'] = datetime.timedelta(days=365) 
 
 
-#items = []
+
 
 
 
