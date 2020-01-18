@@ -31,6 +31,6 @@ api.add_resource(ItemList, '/items') # http://127.0.0.1:5000/birds/
 api.add_resource(UserRegister, '/register') # http://127.0.0.1:5000/register/
 
 if __name__=='__main__':
-    from db import db
-    db.init_app(app)
+    #from db import db
+    #db.init_app(app)
     app.run(port=5000,debug=True)
