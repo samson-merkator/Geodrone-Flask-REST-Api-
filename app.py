@@ -16,9 +16,9 @@ app.secret_key = 'thereisawoman'
 api = Api(app)
 db.init_app(app)
 
-@app.before_first_request
+'''@app.before_first_request
 def create_tables():
-    db.create_all()
+    db.create_all()'''
 
     
 jwt = JWT(app, authenticate, identity) # JWT creates a new end point, that is /auth
@@ -36,7 +36,13 @@ api.add_resource(Item, '/item/<string:name>') # http://127.0.0.1:5000/birds/weid
 api.add_resource(ItemList, '/items') # http://127.0.0.1:5000/birds/
 api.add_resource(UserRegister, '/register') # http://127.0.0.1:5000/register/
 
-if __name__=='__main__':
-    #from db import db
-    #db.init_app(app)
+if __name__=='__main__':   
+    from db import db
+    db.init_app(app)
+
+    if app.config['DEBUG']:
+        @app.before_first_request
+        def create_tables():
+            db.create_all()
+
     app.run(port=5000,debug=True)
