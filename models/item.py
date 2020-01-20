@@ -13,7 +13,7 @@ class ItemModel(db.Model):
     def __init__(self, name, score,latitude, longitude):
         self.name = name
         self.score = score
-        self.latitude = longitude
+        self.latitude = latitude
         self.longitude = longitude
 
     def json(self):

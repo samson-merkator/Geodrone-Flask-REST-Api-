@@ -31,7 +31,7 @@ class Item(Resource):
             #print(key, value)
         cordinates = data["features"][0]['geometry']['coordinates']
         Score = data["features"][0]['properties']['Score']
-        #return {"message":data}
+        #return {"message":cordinates[1]}
         item =ItemModel(name, Score,cordinates[0],cordinates[1])
 
         try:
