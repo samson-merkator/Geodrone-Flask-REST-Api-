@@ -2,6 +2,7 @@ from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
 import datetime
+import os
 
 from security import authenticate, identity
 from resources.user import UserRegister # work on importing the user UserRegister from user.py first 
@@ -10,7 +11,12 @@ from db import db
     
 
 app = Flask(__name__)
-app.config['DATABASE_URI'] = 'sqlite:///data.db' # we can specify the type of database from sqlite to postgres and it should work out of the box
+
+SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+#app.config['DATABASE_URI'] = 'sqlite:///data.db' # we can specify the type of database from sqlite to postgres and it should work out of the box
+
+#app.config['DATABASE_URI'] = 'sqlite:///data.db' # we can specify the type of database from sqlite to postgres and it should work out of the box
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # disable SQLALCHEMy sessions to make code run faster we use Flask SQL ALCHEMY tracker
 app.secret_key = 'thereisawoman'
 api = Api(app)
