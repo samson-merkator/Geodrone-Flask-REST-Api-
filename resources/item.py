@@ -41,7 +41,7 @@ class Item(Resource):
 
         return item.json(), 201 # This returns the code for 201 which means created when the server creates data #202 is accepted delays creating items
 
-
+    @jwt_required()
     def delete(self, name):
         item = ItemModel.find_by_name(name)
         if item:
