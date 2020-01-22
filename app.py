@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
@@ -7,8 +8,7 @@ from security import authenticate, identity
 from resources.user import UserRegister # work on importing the user UserRegister from user.py first 
 from resources.item import Item, ItemList
 from db import db
-import settings
-    
+   
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','sqlite:///data.db')
