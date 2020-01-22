@@ -11,7 +11,7 @@ import settings
     
 
 app = Flask(__name__)
-#app.config['DATABASE_URI'] = 'sqlite:///data.db' # we can specify the type of database from sqlite to postgres and it should work out of the box
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','sqlite:///data.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False # disable SQLALCHEMy sessions to make code run faster we use Flask SQL ALCHEMY tracker
 app.secret_key = 'thereisawoman'
 api = Api(app)
