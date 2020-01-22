@@ -7,6 +7,7 @@ from security import authenticate, identity
 from resources.user import UserRegister # work on importing the user UserRegister from user.py first 
 from resources.item import Item, ItemList
 from db import db
+import settings
     
 
 app = Flask(__name__)
